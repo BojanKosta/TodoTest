@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type= "text/css" href="/css/styles.css"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div align="center">
+    <h1>Welcome to Todo list application</h1>
+    <a href="/new-todo" class="newTodo"><i class="ion-android-add-circle"></i>New Todo</a>
+    <h1></h1>
+    <table border="5" cellpadding="10" class="table">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Functions</th>
+        </tr>
+        <tbody>
+        <tr th:each="todoitem : ${listProducts}">
+            <td th:text="${todoitem.id}">Id</td>
+            <td th:text="${todoitem.title}">Title</td>
+            <td th:text="${todoitem.description}">Description</td>
+            <td th:text="${todoitem.deadline}">Deadline</td>
+            <td>
+                <a th:href="@{'/edit-todo/' + ${todoitem.id}}" class="edit">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete/' + ${todoitem.id}}" class="delete"><i class="ion-android-delete"></i>Delete</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <h1></h1>
+    <a th:href="@{'/deleteAll/'}" class="deleteAll"><i class="ion-android-delete"></i>Delete All</a>
+    <footer>
+        <p>Created by Bojan Todorovic</p>
+    </footer>
+</div>
+
+
+</body>
+</html>

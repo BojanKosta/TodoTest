@@ -17,18 +17,19 @@ public class TodoService {
         return repo.findAll();
     }
 
-    public TodoItem save(TodoItem todo){
+    public TodoItem save(TodoItem todo) {
         return repo.save(todo);
     }
 
-    public TodoItem get (Long id) {
+    public TodoItem get(Long id) {
         return repo.findById(id).get();
     }
 
     public void delete(Long id) {
         repo.deleteById(id);
     }
-    public void deleteAll(){
+
+    public void deleteAll() {
         repo.deleteAll();
     }
 }

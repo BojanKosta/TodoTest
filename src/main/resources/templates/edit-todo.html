@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type= "text/css" href="/css/styles.css"/>
+<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Edit Todo</title>
 </head>
 <body>
 <div align="center">
     <h1 style="color:red;">Edit Todo</h1>
-    <br />
+    <br/>
     <form action="#" th:action="@{/save}" th:object="${todoitem}"
           method="post">
 
@@ -30,7 +30,9 @@
                 <td>Deadline</td>
                 <td><input type="text" th:field="*{deadline}" class="text"/></td>
             </tr>
-            <td colspan="2"><button type="submit" class="save">Save</button> </td>
+            <td colspan="2">
+                <button type="submit" class="save">Save</button>
+            </td>
             </tr>
         </table>
     </form>

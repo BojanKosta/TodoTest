@@ -27,7 +27,7 @@ class TodoListApplicationTest {
     private TodoRepository todoRepository;
 
     @Test
-    public void contextLoads(){
+    public void contextLoads() {
 
         TodoItem item = new TodoItem();
         item.setDescription("test");
@@ -52,7 +52,7 @@ class TodoListApplicationTest {
     }
 
     @Test
-    public void testGetAll(){
+    public void testGetAll() {
         TodoItem item1 = new TodoItem();
         item1.setId(1l);
         item1.setDescription("test");
@@ -70,12 +70,11 @@ class TodoListApplicationTest {
         todoList.add(item2);
 
         Mockito.when(todoRepository.findAll()).thenReturn(todoList);
-
         assertThat(todoService.getAll()).isEqualTo(todoList);
     }
 
     @Test
-    public void testDeleteTodo(){
+    public void testDeleteTodo() {
         TodoItem item = new TodoItem();
         item.setId(1l);
         item.setDescription("test");
@@ -89,7 +88,7 @@ class TodoListApplicationTest {
 
 
     @Test
-    public void testUpdateTodo(){
+    public void testUpdateTodo() {
         TodoItem item = new TodoItem();
         item.setId(1l);
         item.setDescription("test");
@@ -97,10 +96,8 @@ class TodoListApplicationTest {
         item.setTitle("test");
 
         Mockito.when(todoRepository.findById(1l)).thenReturn(java.util.Optional.of(item));
-
         item.setTitle("test updated");
         Mockito.when(todoService.save(item)).thenReturn(item);
-
         assertThat(todoService.save(item)).isEqualTo(item);
 
     }

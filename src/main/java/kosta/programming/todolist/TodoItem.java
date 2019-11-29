@@ -1,12 +1,12 @@
 package kosta.programming.todolist;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
-@EqualsAndHashCode(of = "id")
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "todo")
 public class TodoItem {
@@ -15,7 +15,7 @@ public class TodoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "title")
     private String title;
@@ -37,11 +37,11 @@ public class TodoItem {
     }
 
     // == methods ==
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

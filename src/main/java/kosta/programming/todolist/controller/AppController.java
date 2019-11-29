@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AppController {
@@ -37,15 +38,15 @@ public class AppController {
     }
 
     @RequestMapping("/edit-todo/{id}")
-    public ModelAndView editTodo(@PathVariable(name = "id") Long id) {
+    public ModelAndView editTodo(@PathVariable(name = "id") Integer id) {
         ModelAndView mav = new ModelAndView("edit-todo");
-        TodoItem todoItem = todoService.get(id);
+        Optional<TodoItem> todoItem = todoService.get(id);
         mav.addObject("todoitem", todoItem);
         return mav;
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteTodo(@PathVariable(name = "id") Long id) {
+    public String deleteTodo(@PathVariable(name = "id") Integer id) {
         todoService.delete(id);
         return "redirect:/";
     }

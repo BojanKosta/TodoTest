@@ -18,7 +18,7 @@ import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class TodoListApplicationTest {
+class TodoListApplicationTestService {
 
     @Autowired
     private TodoService todoService;
@@ -42,25 +42,25 @@ class TodoListApplicationTest {
     public void getById() {
 
         TodoItem item = new TodoItem();
-        item.setId(1l);
+        item.setId(1);
         item.setDescription("test");
         item.setDeadline("12.12.1212");
         item.setTitle("test");
 
-        Mockito.when(todoRepository.findById(1l)).thenReturn(java.util.Optional.of(item));
-        assertThat(todoService.get(1l)).isEqualTo(item);
+        Mockito.when(todoRepository.findById(1)).thenReturn(java.util.Optional.of(item));
+        assertThat(todoService.get(1)).isEqualTo(java.util.Optional.of(item));
     }
 
     @Test
     public void testGetAll() {
         TodoItem item1 = new TodoItem();
-        item1.setId(1l);
+        item1.setId(1);
         item1.setDescription("test");
         item1.setDeadline("12.12.1212");
         item1.setTitle("test");
 
         TodoItem item2 = new TodoItem();
-        item2.setId(2l);
+        item2.setId(2);
         item2.setDescription("test2");
         item2.setDeadline("12.12.1212");
         item2.setTitle("test2");
@@ -76,12 +76,12 @@ class TodoListApplicationTest {
     @Test
     public void testDeleteTodo() {
         TodoItem item = new TodoItem();
-        item.setId(1l);
+        item.setId(1);
         item.setDescription("test");
         item.setDeadline("12.12.1212");
         item.setTitle("test");
 
-        Mockito.when(todoRepository.findById(1l)).thenReturn(java.util.Optional.of(item));
+        Mockito.when(todoRepository.findById(1)).thenReturn(java.util.Optional.of(item));
         Mockito.when(todoRepository.existsById(item.getId())).thenReturn(false);
         assertFalse(todoRepository.existsById(item.getId()));
     }
@@ -90,12 +90,12 @@ class TodoListApplicationTest {
     @Test
     public void testUpdateTodo() {
         TodoItem item = new TodoItem();
-        item.setId(1l);
+        item.setId(1);
         item.setDescription("test");
         item.setDeadline("12.12.1212");
         item.setTitle("test");
 
-        Mockito.when(todoRepository.findById(1l)).thenReturn(java.util.Optional.of(item));
+        Mockito.when(todoRepository.findById(1)).thenReturn(java.util.Optional.of(item));
         item.setTitle("test updated");
         Mockito.when(todoService.save(item)).thenReturn(item);
         assertThat(todoService.save(item)).isEqualTo(item);

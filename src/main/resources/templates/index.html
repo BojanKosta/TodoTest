@@ -2,10 +2,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div align="center">
@@ -31,7 +31,6 @@
                 &nbsp;&nbsp;&nbsp;
                 <a th:href="@{'/delete/' + ${todoitem.id}}" class="delete"><i class="ion-android-delete"></i>Delete</a>
             </td>
-
         </tr>
         </tbody>
     </table>

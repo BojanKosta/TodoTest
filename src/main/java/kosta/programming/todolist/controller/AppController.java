@@ -2,6 +2,7 @@ package kosta.programming.todolist.controller;
 
 import kosta.programming.todolist.TodoItem;
 import kosta.programming.todolist.service.TodoService;
+import kosta.programming.todolist.util.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,21 +18,21 @@ public class AppController {
     @Autowired
     private TodoService todoService;
 
-    @RequestMapping("/")
+    @RequestMapping(Mappings.HOME)
     public String viewHome(Model model) {
         List<TodoItem> list = todoService.getAll();
         model.addAttribute("listProducts", list);
         return "index";
     }
 
-    @RequestMapping("/new-todo")
+    @RequestMapping(Mappings.NEW_ITEM)
     public String newTodo(Model model) {
         TodoItem item = new TodoItem();
         model.addAttribute("todoitem", item);
         return "new-todo";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = Mappings.SAVE, method = RequestMethod.POST)
     public String saveTodo(@ModelAttribute("todoitem") TodoItem todoitem) {
         todoService.save(todoitem);
         return "redirect:/";
@@ -51,7 +52,7 @@ public class AppController {
         return "redirect:/";
     }
 
-    @RequestMapping("/deleteAll/")
+    @RequestMapping(Mappings.DELETE_ALL)
     public String deleteTodo() {
         todoService.deleteAll();
         return "redirect:/";

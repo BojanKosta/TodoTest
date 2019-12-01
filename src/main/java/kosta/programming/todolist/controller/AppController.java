@@ -2,11 +2,16 @@ package kosta.programming.todolist.controller;
 
 import kosta.programming.todolist.TodoItem;
 import kosta.programming.todolist.service.TodoService;
+import kosta.programming.todolist.util.AttributeNames;
 import kosta.programming.todolist.util.Mappings;
+import kosta.programming.todolist.util.Views;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -21,41 +26,41 @@ public class AppController {
     @RequestMapping(Mappings.HOME)
     public String viewHome(Model model) {
         List<TodoItem> list = todoService.getAll();
-        model.addAttribute("listProducts", list);
-        return "index";
+        model.addAttribute(AttributeNames.PRODUCT_LIST, list);
+        return Views.INDEX;
     }
 
     @RequestMapping(Mappings.NEW_ITEM)
     public String newTodo(Model model) {
         TodoItem item = new TodoItem();
-        model.addAttribute("todoitem", item);
-        return "new-todo";
+        model.addAttribute(AttributeNames.TODO_ITEM, item);
+        return Views.NEW;
     }
 
     @RequestMapping(value = Mappings.SAVE, method = RequestMethod.POST)
-    public String saveTodo(@ModelAttribute("todoitem") TodoItem todoitem) {
+    public String saveTodo(@ModelAttribute(AttributeNames.TODO_ITEM) TodoItem todoitem) {
         todoService.save(todoitem);
-        return "redirect:/";
+        return Views.REDIRECT;
     }
 
-    @RequestMapping("/edit-todo/{id}")
-    public ModelAndView editTodo(@PathVariable(name = "id") Integer id) {
-        ModelAndView mav = new ModelAndView("edit-todo");
+    @RequestMapping(Mappings.EDIT)
+    public ModelAndView editTodo(@PathVariable(name = AttributeNames.PATH_ID) Integer id) {
+        ModelAndView mav = new ModelAndView(Views.EDIT);
         Optional<TodoItem> todoItem = todoService.get(id);
-        mav.addObject("todoitem", todoItem);
+        mav.addObject(AttributeNames.TODO_ITEM, todoItem);
         return mav;
     }
 
-    @RequestMapping("/delete/{id}")
-    public String deleteTodo(@PathVariable(name = "id") Integer id) {
+    @RequestMapping(Mappings.DELETE)
+    public String deleteTodo(@PathVariable(name = AttributeNames.PATH_ID) Integer id) {
         todoService.delete(id);
-        return "redirect:/";
+        return Views.REDIRECT;
     }
 
     @RequestMapping(Mappings.DELETE_ALL)
     public String deleteTodo() {
         todoService.deleteAll();
-        return "redirect:/";
+        return Views.REDIRECT;
     }
 
 }

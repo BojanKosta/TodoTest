@@ -1,4 +1,4 @@
-# TodoTest
+# Todo List
 Basic To-Do (REST API)
 
 (Create, Update, Delete) a Todo task.

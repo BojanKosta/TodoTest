@@ -1,5 +1,5 @@
 # Todo List
-Basic To-Do (REST API)
+Basic To-Do (Web application)
 
 (Create, Update, Delete) a Todo task.
 

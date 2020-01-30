@@ -1,7 +1,7 @@
 # Todo List
 Basic To-Do (Web application)
 
-(Create, Update, Delete) a Todo task.
+(Create, Read, Update, Delete) a Todo task.
 
 (Get ALL) Todo tasks.
 
